@@ -19,7 +19,7 @@ const LoadingInstaller = () => {
             </div>
             <footer className="flex p-4 z-[10] w-[100%]">
                 <Card className="flex relative w-[100%]">
-                    <Skeleton classNames="rounded-lg" isLoaded={false}>
+                    <Skeleton className="rounded-lg" isLoaded={false}>
                         <div className="h-[3em] bg-secondary"></div>
                     </Skeleton>
                 </Card>

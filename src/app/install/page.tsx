@@ -13,9 +13,7 @@ export default async function Page()
     return (
         <BlogForge>
             <Suspense fallback={<LoadingInstaller/>}>
-                <InstallerTemplate data={data.json()}>
-                    <p>Test</p>
-                </InstallerTemplate>
+                <InstallerTemplate data={data.json()}/>
             </Suspense>
         </BlogForge>
     )

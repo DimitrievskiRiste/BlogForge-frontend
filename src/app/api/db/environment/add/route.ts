@@ -1,5 +1,4 @@
 import getApiServerUrl from '@/server'
-import {NextApiRequest} from "next";
 import {DBConnection} from "@/Types/DBConnection";
 import {NextResponse} from "next/server";
 
@@ -7,7 +6,6 @@ export async function POST(req:Request)
 {
     try {
         const data = await req.formData();
-        console.log(data.get('dbhost'));
         const response = await fetch(getApiServerUrl+"/install/environment/update",{
             method:"POST",
             body:data
@@ -27,6 +25,6 @@ export async function POST(req:Request)
         }
     } catch(error) {
         console.log(error);
-        return NextResponse.json({hasErrors:true, message: error.errorText});
+        return NextResponse.json({hasErrors:true, message: "Something is wrong. Please check error logs."});
     }
 }
