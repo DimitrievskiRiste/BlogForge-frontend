@@ -10,7 +10,6 @@ export async function POST(req:Request)
             method:"POST",
             body:data
         });
-        console.log(response);
         const responseData :DBConnection = await response.json();
         if(responseData.success){
             const r2 = await fetch(getApiServerUrl+"/install/connection");
