@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex flex-col w-[100%] absolute h-[100%] scroll-y-auto`}
+        className={`${geistSans.variable} ${geistMono.variable} flex flex-col w-[100%]  space-y-1 relative`}
       >
         {children}
       </body>
