@@ -1,7 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import getApiServerUrl from "@/server";
 import {UserData} from "@/Types/UserTypes";
-import {cookies} from "next/headers";
 const protectedAdminRoutes = [
     '^/admin$',
     '^/admin/.*',
