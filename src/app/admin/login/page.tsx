@@ -6,19 +6,23 @@ import {Suspense} from "react";
 import {UserData} from "@/Types/UserTypes";
 import {Metadata} from "next";
 export async function generateMetadata() :Promise<Metadata>{
-    const data :ResponseData = await getAppSettings();
-    if(data && !data.hasErrors){
+    const data :ResponseData | null = await getAppSettings();
+    if(data && !data.hasErrors) {
         return {
-            title:data?.setting?.website_name,
-            openGraph:{
-                title:data.setting?.website_name,
-                images:[
+            title: data?.setting?.website_name,
+            openGraph: {
+                title: data.setting?.website_name,
+                images: [
                     {
-                        url:`data:${data.image?.mime_type};base64,${data.image?.blob}`,
-                        alt:data?.setting?.website_name
+                        url: `data:${data.image?.mime_type};base64,${data.image?.blob}`,
+                        alt: data?.setting?.website_name
                     }
                 ]
             }
+        }
+    } else {
+        return {
+            title:"Next App"
         }
     }
 }
@@ -54,7 +58,7 @@ export async function RenderTemplate()
                 user: UserData;
             }
             const response :ResponseData = await data.json();
-            if(response.user.group.can_access_admincp)
+            if(response?.user?.group?.can_access_admincp)
             {
 
             } else {

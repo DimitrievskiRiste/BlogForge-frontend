@@ -47,7 +47,7 @@ export async function POST(req:Request)
             httpOnly:true,
             path:'/'
         });
-        c.set('secret', resData.secret, {
+        c.set('secret', resData.secret.toString(), {
             expires:new Date(Date.now() + 60 * 60 * 1000),
             sameSite:'strict',
             httpOnly:true,
@@ -72,8 +72,7 @@ export async function POST(req:Request)
             user:UserData
         }
         const verifyData :VerifyData = await verify.json();
-        console.log(verifyData);
-        if(verifyData.user.group.can_access_admincp)
+        if(verifyData?.user?.group?.can_access_admincp)
         {
             const response = NextResponse.json({isLoggedIn:true, isAdmin:true, user:verifyData.user, token:resData.token, tokenPass:resData.tokenPass, secret:resData.secret});
             c.set('user', JSON.stringify(verifyData), {
@@ -94,13 +93,13 @@ export async function POST(req:Request)
                 path:'/',
                 httpOnly:true
             });
-            response.cookies.set('secret', resData.secret, {
+            response.cookies.set('secret', resData.secret.toString(), {
                 expires:new Date(Date.now() + 60 * 60 * 1000),
                 sameSite:'strict',
                 path:'/',
                 httpOnly:true
             });
-            response.cookies.set('tokenPass', resData.tokenPass, {
+            response.cookies.set('tokenPass', resData.tokenPass.toString(), {
                 expires:new Date(Date.now() + 60 * 60 * 1000),
                 sameSite:'strict',
                 path:'/',

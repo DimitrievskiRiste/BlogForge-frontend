@@ -21,7 +21,7 @@ type AppProps = {
     message?:string
 }
 type HomePageProps = {
-    appData:AppProps
+    appData:AppProps | null
 }
 export const Homepage = memo(function Homepage({appData}:HomePageProps){
     const [data] = useState(appData);

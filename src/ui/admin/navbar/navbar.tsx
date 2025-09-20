@@ -19,6 +19,11 @@ export default function Navbar()
 {
     const user = useContext(UserContext);
     const app = useContext(AppContext);
+    const showLogoIfAny = app?.image ? (
+        <>
+            <Image src={`data:${app.image?.mime_type};base64,${app?.image?.blob}`} width={100} height={100} alt={`${app.setting?.website_name}'s logo`}/>
+        </>
+    ) : null
     return (
         <>
             <header className="fixed top-0 ui-block w-full z-[20] p-5 flex flex-col flex-wrap shadow-sm">
@@ -27,7 +32,7 @@ export default function Navbar()
                         <MenuOutline className="h-full w-full"/>
                     </div>
                     <div className="flex flex-row max-w-[140px] max-h-[50px]">
-                        <Image src={`data:${app.image?.mime_type};base64,${app.image?.blob}`} width={100} height={100} alt={`${app.setting?.website_name}'s logo`}/>
+                        {showLogoIfAny}
                     </div>
                     <div className="cursor-pointer w-[30px] h-[30px]">
                         <SearchLarge className="w-[30px] h-[30px]"/>

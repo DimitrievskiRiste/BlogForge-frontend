@@ -6,7 +6,7 @@ import {getAppSettings, ResponseData} from "@/server";
 import {Metadata} from "next";
 import {Homepage} from "@/ui/homepage";
 export async function generateMetadata() :Promise<Metadata>{
-    const data :ResponseData = await getAppSettings();
+    const data :ResponseData | null = await getAppSettings();
     if(data && !data.hasErrors){
         return {
             title:data?.setting?.website_name,
@@ -19,6 +19,10 @@ export async function generateMetadata() :Promise<Metadata>{
                     }
                 ]
             }
+        }
+    } else {
+        return {
+            title:"Next app"
         }
     }
 }

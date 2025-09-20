@@ -37,22 +37,27 @@ export const getAppSettings = cache(async () => {
         return data;
     } catch(e){
         console.error(e);
+        return null;
     }
 });
 export async function generateMeta(customTitle?:string) :Promise<Metadata>{
-    const data :ResponseData = await getAppSettings();
-    if(data && !data.hasErrors){
+    const data :ResponseData|null = await getAppSettings();
+    if(data && !data.hasErrors) {
         return {
-            title:data?.setting?.website_name+` ${customTitle}`,
-            openGraph:{
-                title:data.setting?.website_name+` ${customTitle}`,
-                images:[
+            title: data?.setting?.website_name + ` ${customTitle}`,
+            openGraph: {
+                title: data.setting?.website_name + ` ${customTitle}`,
+                images: [
                     {
-                        url:`data:${data.image?.mime_type};base64,${data.image?.blob}`,
-                        alt:data?.setting?.website_name
+                        url: `data:${data.image?.mime_type};base64,${data.image?.blob}`,
+                        alt: data?.setting?.website_name
                     }
                 ]
             }
+        }
+    } else {
+        return {
+            title:"Next app"
         }
     }
 }

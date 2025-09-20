@@ -30,8 +30,7 @@ export async function middleware(request:NextRequest)
                 {
                     const parsedUser :UserData = JSON.parse(user);
                     const authData = await isUserAuthenticated(token, tokenPass, secret);
-                    console.log(authData);
-                    if(authData.isAuthenticated && authData.user && authData.user.group.can_access_admincp)
+                    if(authData.isAuthenticated && authData?.user && authData?.user?.group?.can_access_admincp)
                     {
                         // We have access to admin control panel, let him continue
                         console.log("[Middleware]: Client is authorized, continuing!");
